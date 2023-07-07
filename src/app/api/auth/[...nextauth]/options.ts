@@ -12,6 +12,7 @@ export const options: NextAuthOptions = {
 
   callbacks: {
     session: async ({ session, token }: any) => {
+      console.log(token);
       session.user = {
         id: "",
         name: "",
@@ -34,7 +35,7 @@ export const options: NextAuthOptions = {
         session.user.image = token.picture;
         session.user.username = token.username;
       }
-      // console.log(session.user);
+      console.log(session.user);
       return session;
     },
     signIn: async ({ profile }: any) => {

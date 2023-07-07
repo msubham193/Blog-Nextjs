@@ -42,12 +42,16 @@ const CategoryBar = () => {
   ];
 
   return (
-    <div className="flex gap-5 items-center min-w-full justify-center mt-5 font-medium">
-      {data.map((item) => (
-        <Link href={item.path} key={item.id} className="">
-          {item.label}
-        </Link>
-      ))}
+    <div className="flex flex-col gap-5 items-center min-w-full justify-center  mt-5 font-medium">
+      <div className="flex gap-5 items-center justify-center">
+        {data.map((item) => (
+          <Link href={item.path} key={item.id} className="">
+            {item.label}
+          </Link>
+        ))}
+      </div>
+
+      <div className="h-[1px] bg-black min-w-[80%] after:bg-gray-800"></div>
     </div>
   );
 };
