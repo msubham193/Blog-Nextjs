@@ -6,7 +6,13 @@ import React from "react";
 const CategoryBar = () => {
   const pathname = usePathname();
 
-  console.log(pathname);
+  // console.log(pathname.split("/")[2]);
+  let convertedStr = "";
+  if (pathname != "/") {
+    convertedStr =
+      pathname.split("/")[2].charAt(0).toUpperCase() +
+      pathname.split("/")[2].slice(1);
+  }
 
   const data = [
     {
@@ -42,16 +48,26 @@ const CategoryBar = () => {
   ];
 
   return (
-    <div className="flex flex-col gap-5 items-center min-w-full justify-center  mt-5 font-medium">
+    <div className="flex flex-col gap-5 items-center min-w-full justify-center  mt-5 font-normal  bg-white ">
       <div className="flex gap-5 items-center justify-center">
         {data.map((item) => (
-          <Link href={item.path} key={item.id} className="">
+          <Link
+            href={item.path}
+            key={item.id}
+            className={`${
+              item.label === "Home"
+                ? "font-extrabold"
+                : item.label === convertedStr
+                ? "font-extrabold"
+                : ""
+            }`}
+          >
             {item.label}
           </Link>
         ))}
       </div>
 
-      <div className="h-[1px] bg-black min-w-[80%] after:bg-gray-800"></div>
+      <div className="h-[1px] bg-black min-w-[100%] "> </div>
     </div>
   );
 };

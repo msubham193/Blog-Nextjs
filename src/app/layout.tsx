@@ -3,6 +3,7 @@ import Providers from "./Providers";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import CategoryBar from "@/components/CategoryBar/CategoryBar";
+import Sidebar from "@/components/Sidebar/Sidebar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,8 +22,12 @@ export default function RootLayout({
       <body className={inter.className}>
         <Providers>
           <Navbar />
-          <CategoryBar /> 
-          {children}
+
+          <div className="flex relative mt-20">
+            {children}
+
+            <Sidebar />
+          </div>
         </Providers>
       </body>
     </html>
