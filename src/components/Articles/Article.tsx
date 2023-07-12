@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
@@ -13,7 +14,7 @@ const Article = ({ props }: { props: any }) => {
   // console.log(props);
   return (
     <div
-      className=" shadow-xl p-5 mt-4 bg-white "
+      className=" shadow-xl p-5 mt-4 bg-white cursor-pointer "
       onClick={() => router.push(`/post/${props._id}`)}
     >
       <div className="flex items-center  gap-3">

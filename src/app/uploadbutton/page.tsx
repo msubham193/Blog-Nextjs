@@ -23,6 +23,7 @@ const people = [
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [selected, setSelected] = useState(people[0]);
+  const [btn, setButton] = useState(false);
   const router = useRouter();
 
   const [data, setData] = useState({
@@ -33,7 +34,11 @@ export default function Home() {
 
   const handleSubmit = async () => {
     setLoading(true);
-
+    // if (data.image.length == 0) {
+    //   setButton(true);
+    //   setLoading(false);
+    //   return;
+    // }
     const response = await axios
       .post("/api/post/create", { ...data, category: selected.name })
       .then(() => {
@@ -99,10 +104,12 @@ export default function Home() {
           </div>
           <div className="flex w-full justify-center">
             <button
-              // disabled={true}
+              disabled={btn}
               type="button"
               onClick={handleSubmit}
-              className="text-black bg-slate-300 hover:bg-slate-400 focus:outline-none  font-medium rounded-full text-sm  px-5 py-2.5  w-[30%] "
+              className={`${
+                data.image.length == 0 ? "cursor-progress" : ""
+              }text-black bg-slate-300 hover:bg-slate-400 focus:outline-none  font-medium rounded-full text-sm  px-5 py-2.5  w-[30%] `}
             >
               {loading ? (
                 <div className="flex items-center justify-center">
