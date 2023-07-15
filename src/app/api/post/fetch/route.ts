@@ -9,12 +9,17 @@ export const GET = async (request: NextRequest) => {
   await dbConnection();
 
   let posts: any = [];
-  if (category?.length > 0) {
-    posts = await Post.find({ category: category });
-  } else if (id.length > 0) {
-    posts = await Post.findById({ _id: id });
-  } else {
-    posts = await Post.find();
+
+  try {
+    if (category?.length > 0) {
+      posts = await Post.find({ category: category });
+    } else if (id.length > 0) {
+      posts = await Post.findById({ _id: id });
+    } else {
+      posts = await Post.find();
+    }
+  } catch (error) {
+    return NextResponse.json({ error: error });
   }
 
   return NextResponse.json({ posts: posts }, { status: 201 });
