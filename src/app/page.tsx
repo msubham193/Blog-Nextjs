@@ -9,15 +9,19 @@ import { authOptions, getAuthSession } from "./api/auth/[...nextauth]/route";
 
 const fetchPosts = async () => {
   try {
-    const { data } = await axios.get("http://localhost:3000/api/post/fetch");
-    return data.posts;
+    const res = await fetch("/api/post/fetch", {
+      method: "GET",
+      cache: "no-store",
+    });
+
+    return res.json();
   } catch (error) {
     console.log(error);
   }
 };
 export default async function Home() {
-  const data = await fetchPosts();
-
+  const { posts } = await fetchPosts();
+  console.log(posts);
   const session: any = await getServerSession(authOptions);
 
   console.log(session?.user?.image);
@@ -27,7 +31,7 @@ export default async function Home() {
     <main className=" p-5  w-[65%]">
       <CategoryBar />
 
-      {data?.map((item: any) => (
+      {posts?.map((item: any) => (
         <Article key={item._id} props={item} />
       ))}
     </main>
