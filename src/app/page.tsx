@@ -9,7 +9,7 @@ import { authOptions, getAuthSession } from "./api/auth/[...nextauth]/route";
 
 const fetchPosts = async () => {
   try {
-    const res = await fetch("/api/post/fetch", {
+    const res = await fetch(`${process.env.NEXT_URL}/api/post/fetch`, {
       method: "GET",
       cache: "no-store",
     });
