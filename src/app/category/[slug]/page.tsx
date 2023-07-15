@@ -7,7 +7,7 @@ import React from "react";
 const fetchPostsCategory = async (category: string) => {
   try {
     const { data } = await axios.get(
-      `http://localhost:3000/api/post/fetch?category=${category}`
+      `${process.env.NEXT_URL}/api/post/fetch?category=${category}`
     );
     return data.posts;
   } catch (error) {
@@ -17,6 +17,7 @@ const fetchPostsCategory = async (category: string) => {
 const Category = async ({ params }: { params: { slug: string } }) => {
   const convertedStr =
     params.slug.charAt(0).toUpperCase() + params.slug.slice(1);
+
   const data = await fetchPostsCategory(convertedStr);
 
   return (
