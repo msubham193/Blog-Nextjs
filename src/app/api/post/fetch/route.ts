@@ -18,9 +18,8 @@ export const GET = async (request: NextRequest) => {
     } else {
       posts = await Post.find();
     }
+    return NextResponse.json({ posts: posts }, { status: 201 });
   } catch (error) {
     return NextResponse.json({ error: error });
   }
-
-  return NextResponse.json({ posts: posts }, { status: 201 });
 };
