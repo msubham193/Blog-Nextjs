@@ -51,7 +51,6 @@ export default function Home() {
         setLoading(false);
         console.log(error);
       });
-    console.log(response);
   };
   return (
     <main className="flex min-h-screen w-[70%]   flex-col   p-24">
@@ -72,7 +71,7 @@ export default function Home() {
             type="text"
             name={data.title}
             value={data.title}
-            className="p-2 w-full border focus:outline-none  rounded-lg border-black"
+            className="p-2 w-full border focus:outline-none  rounded-lg border-slate-500"
             placeholder="Enter title.. "
             onChange={(e) => setData({ ...data, title: e.target.value })}
           />
@@ -82,11 +81,11 @@ export default function Home() {
             rows={10}
             name={data.content}
             value={data.content}
-            className="mt-5 rounded-lg border border-black p-2  focus:outline-none mb-3"
-            placeholder="Enter Content..."
+            className="mt-5  w-full rounded-lg border border-slate-500 p-2  focus:outline-none mb-3"
+            placeholder="Enter Story....."
             onChange={(e) => setData({ ...data, content: e.target.value })}
           ></textarea>
-          <div className=" flex ">
+          <div className="flex gap-12 ">
             <UploadButton
               endpoint="imageUploader"
               onClientUploadComplete={(res) => {
@@ -101,6 +100,17 @@ export default function Home() {
                 // Do something with the error.
                 alert(`ERROR! ${error.message}`);
               }}
+            />
+          </div>
+          <p className="mt-3 font-extrabold text-slate-500 p-3"> -- OR -- </p>
+          <div>
+            <input
+              type="text"
+              placeholder="Add image link here..."
+              className="mt-5 mb-6 w-full rounded-md p-2 bg-slate-200 "
+              name={data.image}
+              value={data.image}
+              onChange={(e) => setData({ ...data, image: e.target.value })}
             />
           </div>
           <div className="flex w-full justify-center">
