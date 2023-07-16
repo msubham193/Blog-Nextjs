@@ -33,7 +33,7 @@ const fetchPosts = async () => {
 // };
 export default async function Home() {
   const data = await fetchPosts();
-  console.log(data.length);
+ 
   const session: any = await getServerSession(authOptions);
 
   // console.log(data.length);

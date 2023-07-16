@@ -16,7 +16,7 @@ const Navbar = () => {
     setOpen(!open);
   };
 
-  console.log(data);
+  console.log("gg" + data);
   return (
     <div className="flex items-center justify-between min-w-full h-16 shadow-lg p-10  fixed top-0 bg-white z-50">
       <SearchBar />
