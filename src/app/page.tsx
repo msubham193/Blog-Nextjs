@@ -7,32 +7,33 @@ import axios from "axios";
 import { getServerSession } from "next-auth";
 import { authOptions, getAuthSession } from "./api/auth/[...nextauth]/route";
 
-// const fetchPosts = async () => {
-//   try {
-//     const { data } = await axios.get(`${process.env.NEXT_URL}/api/post/fetch`);
-
-//     return data.posts;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
 const fetchPosts = async () => {
   try {
-    const res = await fetch(`${process.env.NEXT_URL}/api/post/fetch`, {
-      cache: "no-store",
-    });
+    const { data } = await axios.get(`${process.env.NEXT_URL}/api/post/fetch`);
 
-    if (!res.ok) {
-      throw new Error("Failed to fetch data");
-    }
-    const data = res.json();
-
-    return data;
-  } catch (error) {}
+    return data.posts;
+  } catch (error) {
+    console.log(error);
+  }
 };
+// const fetchPosts = async () => {
+//   try {
+//     const res = await fetch(`${process.env.NEXT_URL}/api/post/fetch`, {
+//       // cache: "no-store",
+//       next: { revalidate: 2 },
+//     });
+
+//     if (!res.ok) {
+//       throw new Error("Failed to fetch data");
+//     }
+//     const data = res.json();
+
+//     return data;
+//   } catch (error) {}
+// };
 export default async function Home() {
-  const { posts } = await fetchPosts();
-  console.log(posts.length);
+  const data = await fetchPosts();
+  console.log(data.length);
   const session: any = await getServerSession(authOptions);
 
   // console.log(data.length);
@@ -41,8 +42,8 @@ export default async function Home() {
     <main className=" p-5  w-[65%]">
       <CategoryBar />
 
-      {posts?.map((item: any) => (
-        <Article key={item._id} props={item} />
+      {data?.map((item: any) => (
+        <Article key={item._id} props={...item} />
       ))}
     </main>
   );

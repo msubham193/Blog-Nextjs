@@ -44,7 +44,7 @@ export default function Home() {
       .then(() => {
         setLoading(false);
         router.push("/");
-        console.log("Created Successfully");
+        // console.log("Created Successfully");
       })
       .catch((error) => {
         setLoading(false);
