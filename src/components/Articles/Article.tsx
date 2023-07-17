@@ -10,8 +10,9 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 
 const Article = ({ props }: { props: any }) => {
-  const { data } = useSession();
+  const { data }: any = useSession();
   // console.log(data);
+
   const router = useRouter();
 
   console.log(props);
