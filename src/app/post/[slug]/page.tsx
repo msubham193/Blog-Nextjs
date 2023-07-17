@@ -41,7 +41,7 @@ const SinglePost = async ({ params }: { params: { slug: string } }) => {
         alt="image"
       />
 
-      <p className="w-[90%] text-justify font-normal text-base">
+      <p className="w-[90%] text-justify font-normal text-lg mt-14">
         {data?.content}
       </p>
     </main>

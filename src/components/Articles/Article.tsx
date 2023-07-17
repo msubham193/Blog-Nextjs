@@ -2,21 +2,39 @@
 "use client";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Like from "./Icons/Like";
 import Share from "./Icons/Share";
 import Comments from "./Icons/Comments";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
 const Article = ({ props }: { props: any }) => {
   const { data } = useSession();
+  // console.log(data);
   const router = useRouter();
+
+  console.log(props);
+
+  const [isLiked, setIsLiked] = useState(false);
+  const [like, setLike] = useState(props.likes.length);
+
+  useEffect(() => {
+    setIsLiked(props.likes?.includes(data?.user?.id) ? true : false);
+    setLike(props.likes.length);
+  }, [props.likes, data?.user?.id]);
+
+  const onLiked = async () => {
+    setIsLiked(!isLiked);
+    setLike(!isLiked ? like + 1 : like - 1);
+    await axios
+      .put(`api/post/like?id=${props._id}`)
+      .then(() => router.refresh())
+      .catch((error) => console.log(error));
+  };
   // console.log(props);
   return (
-    <div
-      className=" shadow-xl p-5 mt-4 bg-white cursor-pointer "
-      onClick={() => router.push(`/post/${props._id}`)}
-    >
+    <div className=" shadow-lg p-5 mt-4 bg-white cursor-pointer hover:shadow-2xl transition-all duration-300 ease-in-out ">
       <div className="flex items-center  gap-3">
         <Image
           src={props?.author?.avatar}
@@ -32,7 +50,10 @@ const Article = ({ props }: { props: any }) => {
         </div>
       </div>
 
-      <div className=" w-full  flex items-center  justify-between gap-4  ">
+      <div
+        className=" w-full  flex items-center  justify-between gap-4  "
+        onClick={() => router.push(`/post/${props._id}`)}
+      >
         <div>
           {" "}
           <h1 className="text-lg font-semibold mt-4">{props.title}</h1>
@@ -55,7 +76,10 @@ const Article = ({ props }: { props: any }) => {
           {" "}
           <Share />
           <Comments />
-          <Like />
+          <div className="flex items-center justify-center gap-1">
+            <Like isLiked={isLiked} onClick={onLiked} />
+            <span>{like}</span>
+          </div>
         </div>
       </div>
     </div>

@@ -3,6 +3,9 @@ import CategoryBar from "@/components/CategoryBar/CategoryBar";
 import axios from "axios";
 import { usePathname } from "next/navigation";
 import React from "react";
+import notfound from "../../../Animation/json/notfound.json";
+import Lottie from "lottie-react";
+import Animation from "@/Animation/Animation";
 
 const fetchPostsCategory = async (category: string) => {
   try {
@@ -21,12 +24,23 @@ const Category = async ({ params }: { params: { slug: string } }) => {
   const data = await fetchPostsCategory(convertedStr);
 
   return (
-    <main className=" p-5  w-[65%]">
+    <main className=" p-5  w-[65%] ">
       <CategoryBar />
 
-      {data?.map((item: any) => (
-        <Article key={item._id} props={item} />
-      ))}
+      {data.length > 0 ? (
+        <>
+          {" "}
+          {data?.map((item: any) => (
+            <Article key={item._id} props={item} />
+          ))}
+        </>
+      ) : (
+        <Animation
+          animationData={notfound}
+          classes=" flex items-center justify-center"
+        />
+      )}
+
       {/* {params.slug} */}
     </main>
   );

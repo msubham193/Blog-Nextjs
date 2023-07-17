@@ -3,6 +3,7 @@ import Reder from "@/Icons/Reder";
 import React from "react";
 import Lottie from "lottie-react";
 import alien from "../../../Animation/json/alien.json";
+import Animation from "@/Animation/Animation";
 const SubscriptionCard = () => {
   const defaultOptions = {
     loop: true,
@@ -27,7 +28,7 @@ const SubscriptionCard = () => {
         </button>
       </div>
       <div>
-        <Lottie animationData={alien}></Lottie>
+        <Animation animationData={alien} classes=""></Animation>
       </div>
     </div>
   );
