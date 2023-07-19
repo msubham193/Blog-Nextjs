@@ -8,14 +8,16 @@ import Share from "./Icons/Share";
 import Comments from "./Icons/Comments";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { LoginModalStore } from "../../../store/LoginModalStore";
+import Edit from "./Icons/Edit";
+import Delete from "./Icons/Delete";
+import Link from "next/link";
 
 const Article = ({ props }: { props: any }) => {
   const { data }: any = useSession();
-  // console.log(data);
 
+  const loginModal: any = LoginModalStore();
   const router = useRouter();
-
-  console.log(props);
 
   const [isLiked, setIsLiked] = useState(false);
   const [like, setLike] = useState(props.likes.length);
@@ -26,10 +28,21 @@ const Article = ({ props }: { props: any }) => {
   }, [props.likes, data?.user?.id]);
 
   const onLiked = async () => {
+    if (!data) {
+      loginModal.setOpen();
+      return;
+    }
+
     setIsLiked(!isLiked);
     setLike(!isLiked ? like + 1 : like - 1);
     await axios
       .put(`api/post/like?id=${props._id}`)
+      .then(() => router.refresh())
+      .catch((error) => console.log(error));
+  };
+  const onDelete = async () => {
+    await axios
+      .delete(`api/post/delete?id=${props._id}`)
       .then(() => router.refresh())
       .catch((error) => console.log(error));
   };
@@ -75,11 +88,26 @@ const Article = ({ props }: { props: any }) => {
         </div>
         <div className="flex items-center gap-8">
           {" "}
+          {props.author.id === data?.user.id ? (
+            <div className="flex items-center gap-8 justify-center">
+              <Delete onClick={onDelete} />
+              <Link href={`/uploadbutton/update`}>
+                {" "}
+                <Edit />
+              </Link>
+            </div>
+          ) : (
+            ""
+          )}
           <Share />
-          <Comments />
+          <div className="flex items-center justify-center gap-1">
+            {" "}
+            <Comments />
+            <p className="text-slate-500 text-sm">{props.comments.length}</p>
+          </div>
           <div className="flex items-center justify-center gap-1">
             <Like isLiked={isLiked} onClick={onLiked} />
-            <span>{like}</span>
+            <p className="text-slate-500 text-sm">{like}</p>
           </div>
         </div>
       </div>

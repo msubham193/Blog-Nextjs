@@ -7,6 +7,7 @@ import Image from "next/image";
 import Menu from "@/Icons/Menu";
 import WriteButton from "./WriteButton";
 import Write from "@/Icons/Write";
+import Link from "next/link";
 
 const Navbar = () => {
   const { data } = useSession();
@@ -15,16 +16,15 @@ const Navbar = () => {
   const openDropDown = () => {
     setOpen(!open);
   };
-
-  console.log("gg" + data);
+;
   return (
     <div className="flex items-center justify-between min-w-full h-16 shadow-lg p-10  fixed top-0 bg-white z-50">
       <SearchBar />
-      <div className="flex items-center gap-2">
+      <Link className="flex items-center gap-2" href="/">
         {" "}
         <Logo />
         <span className="font-bold  text-xl">Story</span>
-      </div>
+      </Link>
 
       <div className="flex gap-3">
         {!data?.user ? (

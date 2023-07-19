@@ -3,13 +3,13 @@
 // You need to import our styles for the button to look right. Best to import in the root /layout.tsx but this is fine
 import "@uploadthing/react/styles.css";
 
-import { UploadButton } from "../../utills/uploadthing";
+import { UploadButton } from "../../../utills/uploadthing";
 
 import { useState } from "react";
 import DropDown from "@/components/DropDown/DropDown";
 import { title } from "process";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const people = [
   { name: "Choose Category" },
@@ -25,7 +25,8 @@ export default function Home() {
   const [selected, setSelected] = useState(people[0]);
   const [btn, setButton] = useState(false);
   const router = useRouter();
-
+  const pathname = usePathname();
+  console.log();
   const [data, setData] = useState({
     title: "",
     content: "",
@@ -34,28 +35,27 @@ export default function Home() {
 
   const handleSubmit = async () => {
     setLoading(true);
-    // if (data.image.length == 0) {
-    //   setButton(true);
-    //   setLoading(false);
-    //   return;
-    // }
+
     const response = await axios
       .post("/api/post/create", { ...data, category: selected.name })
       .then(() => {
         setLoading(false);
         router.push("/");
         router.refresh();
-        // console.log("Created Successfully");
       })
       .catch((error) => {
         setLoading(false);
         console.log(error);
       });
   };
+
+  const handleUpdate = async () => { };
   return (
     <main className="flex min-h-screen w-[70%]   flex-col   p-24">
       <h1 className="text-black font-bold text-left w-full mb-5">
-        Create a Post
+        {pathname.split("/")[2] === "create"
+          ? "Create a Post"
+          : "Update a Post"}
       </h1>
       <div className="w-full h-[1px] bg-gray-500"></div>
       <div className="w-full shadow-xl  p-5">
@@ -143,8 +143,10 @@ export default function Home() {
                   </svg>
                   <p>Creating..</p>
                 </div>
-              ) : (
+              ) : pathname.split("/")[2] === "create" ? (
                 "Create"
+              ) : (
+                "Update"
               )}
             </button>
           </div>

@@ -1,3 +1,4 @@
+import CommentSection from "@/components/Comment/CommentSection";
 import axios from "axios";
 import Image from "next/image";
 import React from "react";
@@ -13,11 +14,17 @@ const fetchSingelPost = async (id: string) => {
   }
 };
 
-const SinglePost = async ({ params }: { params: { slug: string } }) => {
+const SinglePost = async ({
+  params,
+  children,
+}: {
+  params: { slug: string };
+  children: any;
+}) => {
   console.log(params.slug);
   const data = await fetchSingelPost(params.slug);
   // console.log(data.image);
-
+  // console.log(typeof data);
   return (
     <main className="text-black p-10 shadow-md w-[65%]">
       <h1 className="font-medium text-3xl">{data?.title}</h1>
@@ -44,6 +51,9 @@ const SinglePost = async ({ params }: { params: { slug: string } }) => {
       <p className="w-[90%] text-justify font-normal text-lg mt-14">
         {data?.content}
       </p>
+
+      <hr className="mt-16 font-extrabold" />
+      <CommentSection id={params.slug} post={data} />
     </main>
   );
 };

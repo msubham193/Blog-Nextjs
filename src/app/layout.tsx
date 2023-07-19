@@ -1,11 +1,16 @@
 import Navbar from "@/components/Navbar/Navbar";
 import Providers from "./Providers";
 import "./globals.css";
-import { Inter } from "next/font/google";
-import CategoryBar from "@/components/CategoryBar/CategoryBar";
-import Sidebar from "@/components/Sidebar/Sidebar";
+import { Poppins } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+import Sidebar from "@/components/Sidebar/Sidebar";
+import { LoginModalStore } from "../../store/LoginModalStore";
+import LoginModal from "@/components/Modals/LoginModal";
+
+const poppins = Poppins({
+  subsets: ["devanagari"],
+  weight: "400",
+});
 
 export const metadata = {
   title: "Story",
@@ -19,10 +24,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={poppins.className}>
         <Providers>
           <Navbar />
-
+          <LoginModal />
           <div className="flex relative mt-20">
             {children}
 
