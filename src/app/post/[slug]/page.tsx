@@ -14,13 +14,7 @@ const fetchSingelPost = async (id: string) => {
   }
 };
 
-const SinglePost = async ({
-  params,
-  children,
-}: {
-  params: { slug: string };
-  children: any;
-}) => {
+const SinglePost = async ({ params }: { params: { slug: string } }) => {
   console.log(params.slug);
   const data = await fetchSingelPost(params.slug);
   // console.log(data.image);
