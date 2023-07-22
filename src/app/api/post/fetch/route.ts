@@ -12,11 +12,11 @@ export const GET = async (request: NextRequest) => {
 
   try {
     if (category?.length > 0) {
-      posts = await Post.find({ category: category });
+      posts = await Post.find({ category: category }).sort({ createdAt: -1 });
     } else if (id.length > 0) {
       posts = await Post.findById({ _id: id });
     } else {
-      posts = await Post.find();
+      posts = await Post.find().sort({ createdAt: -1 });
     }
     return NextResponse.json({ posts: posts }, { status: 201 });
   } catch (error) {
