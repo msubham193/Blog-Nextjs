@@ -8,6 +8,10 @@ import Menu from "@/Icons/Menu";
 import WriteButton from "./WriteButton";
 
 import Link from "next/link";
+import Logout from "../Articles/Icons/Logout";
+import Profile from "../Articles/Icons/Profile";
+import About from "../Articles/Icons/About";
+import Developer from "../Articles/Icons/Developer";
 
 const Navbar = () => {
   const { data } = useSession();
@@ -65,12 +69,40 @@ const Navbar = () => {
 };
 
 const DropDown = () => {
+  const data = [
+    {
+      id: 1,
+      text: "Profile",
+      icon: <Profile />,
+    },
+    {
+      id: 2,
+      text: "About",
+      icon: <About />,
+    },
+    {
+      id: 3,
+      text: "Log out",
+      icon: <Logout />,
+    },
+    {
+      id: 4,
+      text: "Developer Info",
+      icon: <Developer />,
+    },
+  ];
+
   return (
-    <div className="bg-white w-56 h-64 p-5 absolute right-0 top-14 shadow-xl border border-teal-200 rounded-md">
-      <div className="flex items-center gap-3">
-        
-        <button onClick={() => signOut()}> Log out</button>
-      </div>
+    <div className="bg-white w-56 h-64 p-5 absolute right-0 top-14 shadow-xl border  rounded-md">
+      {data.map((d: any) => (
+        <div
+          className="flex items-center gap-5 font-medium text-base mb-5 hover:bg-slate-300 rounded-md p-2"
+          key={d.id}
+        >
+          {d.icon}
+          <button onClick={() => signOut()}> {d.text}</button>
+        </div>
+      ))}
     </div>
   );
 };
