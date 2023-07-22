@@ -8,7 +8,7 @@ import { signIn } from "next-auth/react";
 const LoginModal = () => {
   const loginModal: any = LoginModalStore();
 
-  console.log(loginModal);
+  // console.log(loginModal);
 
   const content = (
     <div className="flex items-center justify-center border w-full rounded-xl border-gray-600">

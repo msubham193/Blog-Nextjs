@@ -46,7 +46,7 @@ const Article = ({ props }: { props: any }) => {
       .then(() => router.refresh())
       .catch((error) => console.log(error));
   };
-  // console.log(props);
+
   return (
     <div className=" shadow-lg p-5 mt-4 bg-white cursor-pointer hover:shadow-2xl transition-all duration-300 ease-in-out ">
       <div className="flex items-center  gap-3">

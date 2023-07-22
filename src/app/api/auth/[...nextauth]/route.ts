@@ -4,6 +4,7 @@ import { dbConnection } from "@/utills/dbConnect";
 import { NextAuthOptions, getServerSession } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import User from "../../../../../models/userModels";
+
 export const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
@@ -53,6 +54,7 @@ export const authOptions: NextAuthOptions = {
     },
 
     signIn: async ({ profile, session }: any) => {
+      console.log(profile.picture);
       try {
         await dbConnection();
         if (await User.findOne({ email: profile.email })) {
@@ -61,6 +63,7 @@ export const authOptions: NextAuthOptions = {
         await User.create({
           email: profile.email,
           name: profile.name,
+          image: profile.picture,
         });
 
         return true;

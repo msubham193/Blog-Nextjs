@@ -6,7 +6,7 @@ import Post from "../../../../../models/postModel";
 
 export const PUT = async (request: NextRequest) => {
   const data = await request.json();
-  console.log(data);
+
   const id: string = request.nextUrl.searchParams.get("id") || "";
 
   try {

@@ -26,7 +26,7 @@ export default function Home() {
   const [btn, setButton] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
-  console.log();
+
   const [data, setData] = useState({
     title: "",
     content: "",
@@ -49,7 +49,7 @@ export default function Home() {
       });
   };
 
-  const handleUpdate = async () => { };
+  const handleUpdate = async () => {};
   return (
     <main className="flex min-h-screen w-[70%]   flex-col   p-24">
       <h1 className="text-black font-bold text-left w-full mb-5">

@@ -17,8 +17,7 @@ const fetchSingelPost = async (id: string) => {
 const SinglePost = async ({ params }: { params: { slug: string } }) => {
   console.log(params.slug);
   const data = await fetchSingelPost(params.slug);
-  // console.log(data.image);
-  // console.log(typeof data);
+
   return (
     <main className="text-black p-10 shadow-md w-[65%]">
       <h1 className="font-medium text-3xl">{data?.title}</h1>
@@ -38,7 +37,7 @@ const SinglePost = async ({ params }: { params: { slug: string } }) => {
       </div>
       <img
         src={data?.image}
-        className=" mt-3 w-[80%] rounded-md mb-5"
+        className="mt-3 w-[80%] rounded-md mb-5"
         alt="image"
       />
 

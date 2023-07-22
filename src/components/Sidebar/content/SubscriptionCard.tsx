@@ -17,7 +17,7 @@ const SubscriptionCard = () => {
     <div className="bg-slate-100 flex items-center justify-between p-5 rounded-lg shadow-md max-w-sm">
       <div>
         <h1 className="font-semibold">
-          Get unlimited access to everything on Reader
+          Get unlimited access to everything on Story
         </h1>
         <p className="text-xs mt-2">
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque,

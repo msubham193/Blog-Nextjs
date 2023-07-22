@@ -6,7 +6,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Menu from "@/Icons/Menu";
 import WriteButton from "./WriteButton";
-import Write from "@/Icons/Write";
+
 import Link from "next/link";
 
 const Navbar = () => {
@@ -16,7 +16,11 @@ const Navbar = () => {
   const openDropDown = () => {
     setOpen(!open);
   };
-;
+
+  const onLogin = () => {
+    signIn("google");
+  };
+
   return (
     <div className="flex items-center justify-between min-w-full h-16 shadow-lg p-10  fixed top-0 bg-white z-50">
       <SearchBar />
@@ -31,7 +35,7 @@ const Navbar = () => {
           <>
             <button
               className="bg-black rounded-2xl text-white p-2 px-3"
-              onClick={() => signIn("google")}
+              onClick={onLogin}
             >
               Login
             </button>
