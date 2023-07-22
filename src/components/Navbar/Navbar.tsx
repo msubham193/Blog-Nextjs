@@ -67,8 +67,9 @@ const Navbar = () => {
 const DropDown = () => {
   return (
     <div className="bg-white w-56 h-64 p-5 absolute right-0 top-14 shadow-xl border border-teal-200 rounded-md">
-      <div>
-        <button onClick={() => signOut()}>Log out</button>
+      <div className="flex items-center gap-3">
+        
+        <button onClick={() => signOut()}> Log out</button>
       </div>
     </div>
   );

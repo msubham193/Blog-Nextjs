@@ -12,6 +12,7 @@ import { LoginModalStore } from "../../../store/LoginModalStore";
 import Edit from "./Icons/Edit";
 import Delete from "./Icons/Delete";
 import Link from "next/link";
+import Liked from "./Icons/Liked";
 
 const Article = ({ props }: { props: any }) => {
   const { data }: any = useSession();
@@ -106,7 +107,7 @@ const Article = ({ props }: { props: any }) => {
             <p className="text-slate-500 text-sm">{props.comments.length}</p>
           </div>
           <div className="flex items-center justify-center gap-1">
-            <Like isLiked={isLiked} onClick={onLiked} />
+            {isLiked ? <Liked onClick={onLiked} /> : <Like onClick={onLiked} />}
             <p className="text-slate-500 text-sm">{like}</p>
           </div>
         </div>

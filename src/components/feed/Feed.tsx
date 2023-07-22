@@ -11,13 +11,12 @@ const Feed = ({ data }: { data: [] }) => {
     const filter = data.filter((post: any) => {
       return post.title.toLowerCase().includes(text.toLowerCase());
     });
-    console.log("ss" + filter.length);
+
     if (filter.length > 0) {
       setFilteredPost(filter);
     } else {
       //   alert("No post found");
     }
-    console.log(filteredpost);
   }, [text]);
 
   return (
