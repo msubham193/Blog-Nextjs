@@ -6,7 +6,7 @@ import React from "react";
 const CategoryBar = () => {
   const pathname = usePathname();
 
-  // console.log(pathname.split("/")[2]);
+  
   let convertedStr = "";
   if (pathname != "/") {
     convertedStr =

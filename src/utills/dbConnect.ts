@@ -10,7 +10,7 @@ export const dbConnection = async () => {
         useUnifiedTopology: true,
       } as ConnectOptions
     );
-    console.log("connection established");
+    // console.log("connection established");
   } catch (error: any) {
     console.log(error.message);
   }

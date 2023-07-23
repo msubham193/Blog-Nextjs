@@ -91,7 +91,6 @@ export default function Home() {
               onClientUploadComplete={(res) => {
                 // Do something with the response
 
-                // console.log("Files: ", res[0]?.fileUrl);
 
                 setData({ ...data, image: res?.[0]?.fileUrl ?? "" });
                 // alert("Upload Completed");

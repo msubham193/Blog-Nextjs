@@ -5,11 +5,11 @@ import { useSearchTextStore } from "../../../store/useSearchTextStore";
 const SearchBar = () => {
   const { text, setText }: any = useSearchTextStore();
   const onSearchTextChange = (e: any) => {
-    // console.log(e.target.value);
+  
     setText(e.target.value);
   };
 
-  // console.log(text);
+ 
   return (
     <div className="border border-black rounded-2xl p-1 flex items-center w-44">
       <input

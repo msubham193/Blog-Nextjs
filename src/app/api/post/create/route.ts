@@ -10,7 +10,7 @@ export const POST = async (request: NextRequest) => {
   try {
     await dbConnection();
     const session: any = await getServerSession(authOptions);
-    console.log(session)
+   
 
     if (!session) {
       return NextResponse.json({ message: "UnAuthorized" }, { status: 404 });

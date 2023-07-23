@@ -11,14 +11,7 @@ export const GET = async (request: NextRequest) => {
     await dbConnection();
     const session: any = await getServerSession(authOptions);
 
-    console.log(id);
-    // if (!session) {
-    //   return NextResponse.json({ message: "UnAuthorized" }, { status: 404 });
-    // }
-
     const user = await User.findById(id);
-
-    console.log();
 
     return NextResponse.json(
       {

@@ -19,8 +19,7 @@ export const authOptions: NextAuthOptions = {
 
   callbacks: {
     session: async ({ session, token }: any) => {
-      // console.log(token);
-      // console.log(session);
+  
       session.user = {
         id: "",
         name: "",
@@ -38,8 +37,7 @@ export const authOptions: NextAuthOptions = {
       session.user = session.user ?? {};
 
       const sessionUser = await User.findOne({ email: token.email });
-      // console.log(sessionUser);
-      // console.log(token);
+   
       if (token) {
         session.user.id = sessionUser.id;
         session.user.name = token.name;
@@ -48,13 +46,13 @@ export const authOptions: NextAuthOptions = {
         session.user.username = token.username;
       }
 
-      // console.log(session.user);
+     
 
       return session;
     },
 
     signIn: async ({ profile, session }: any) => {
-      console.log(profile.picture);
+    
       try {
         await dbConnection();
         if (await User.findOne({ email: profile.email })) {
