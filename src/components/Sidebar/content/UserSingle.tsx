@@ -27,12 +27,11 @@ const UserSingle = ({ props, user }: { props: props; user: any }) => {
       return;
     }
     setBtnText(btnText == "Following" ? "Follow" : "Following");
-    try {
-      await axios.put(`/api/user/follow?id=${props._id}`);
-      router.refresh();
-    } catch (error: any) {
-      alert(error.message);
-    }
+
+    await axios
+      .put(`/api/user/follow?id=${props._id}`)
+      .then(() => router.refresh())
+      .catch((error: any) => console.log(error.message));
   };
 
   return (
