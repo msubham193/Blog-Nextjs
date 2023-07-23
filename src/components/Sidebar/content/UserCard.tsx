@@ -30,7 +30,7 @@ const UserCard = async () => {
 
   let users = await fetchUser();
 
-  users = users.filter((user: any) => user?._id !== session?.user?.id);
+  users = users?.filter((user: any) => user?._id !== session?.user?.id);
 
   let data: any;
   if (session) {

@@ -34,6 +34,7 @@ const Article = ({ props }: { props: any }) => {
       return;
     }
 
+
     setIsLiked(!isLiked);
     setLike(!isLiked ? like + 1 : like - 1);
     await axios
