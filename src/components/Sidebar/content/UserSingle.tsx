@@ -14,6 +14,10 @@ interface props {
 }
 const UserSingle = ({ props, user }: { props: props; user: any }) => {
   const router = useRouter();
+
+  const [followerCnt, setFollowerCnt] = useState<any | null>(
+    props?.followers.length
+  );
   const [btnText, setBtnText] = useState(
     user?.following.includes(props?._id) ? "Following" : "Follow"
   );
@@ -26,7 +30,10 @@ const UserSingle = ({ props, user }: { props: props; user: any }) => {
       loginModal.setOpen();
       return;
     }
+
     setBtnText(btnText == "Following" ? "Follow" : "Following");
+
+    setFollowerCnt(btnText == "Following" ? followerCnt - 1 : followerCnt + 1);
 
     await axios
       .put(`/api/user/follow?id=${props._id}`)
@@ -49,9 +56,7 @@ const UserSingle = ({ props, user }: { props: props; user: any }) => {
           <h1 className="text-sm font-bold hover:underline cursor-pointer">
             {props?.name}
           </h1>
-          <p className="text-xs tracking-wider">
-            {props?.followers.length} Followers
-          </p>
+          <p className="text-xs tracking-wider">{followerCnt} Followers</p>
         </div>
       </div>
       <button
