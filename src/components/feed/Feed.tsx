@@ -12,7 +12,7 @@ const Feed = ({ data }: { data: [] }) => {
       return post.title.toLowerCase().includes(text.toLowerCase());
     });
 
-    if (filter.length > 0) {
+    if (filter?.length > 0) {
       setFilteredPost(filter);
     } else {
      

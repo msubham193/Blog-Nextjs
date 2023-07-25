@@ -7,7 +7,6 @@ import Sidebar from "@/components/Sidebar/Sidebar";
 import { LoginModalStore } from "../../store/LoginModalStore";
 import LoginModal from "@/components/Modals/LoginModal";
 
-
 const poppins = Poppins({
   subsets: ["devanagari"],
   weight: "400",
@@ -31,7 +30,6 @@ export default function RootLayout({
           <LoginModal />
           <div className="flex relative mt-20">
             {children}
-      
 
             <Sidebar />
           </div>

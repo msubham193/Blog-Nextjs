@@ -5,6 +5,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { LoginModalStore } from "../../../../store/LoginModalStore";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface props {
   image: string;
@@ -14,6 +15,8 @@ interface props {
 }
 const UserSingle = ({ props, user }: { props: props; user: any }) => {
   const router = useRouter();
+
+  console.log(user.following);
 
   const [followerCnt, setFollowerCnt] = useState<any | null>(
     props?.followers.length
@@ -53,9 +56,12 @@ const UserSingle = ({ props, user }: { props: props; user: any }) => {
         />
 
         <div className="">
-          <h1 className="text-sm font-bold hover:underline cursor-pointer">
+          <Link
+            href={`/profile/${props._id}`}
+            className="text-sm font-bold hover:underline cursor-pointer"
+          >
             {props?.name}
-          </h1>
+          </Link>
           <p className="text-xs tracking-wider">{followerCnt} Followers</p>
         </div>
       </div>
