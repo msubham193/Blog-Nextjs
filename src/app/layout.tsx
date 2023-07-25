@@ -1,15 +1,19 @@
 import Navbar from "@/components/Navbar/Navbar";
 import Providers from "./Providers";
 import "./globals.css";
-import { Poppins } from "next/font/google";
+import { Poppins, Roboto } from "next/font/google";
 
 import Sidebar from "@/components/Sidebar/Sidebar";
 import { LoginModalStore } from "../../store/LoginModalStore";
 import LoginModal from "@/components/Modals/LoginModal";
 
-const poppins = Poppins({
-  subsets: ["devanagari"],
-  weight: "400",
+import { Inter } from "next/font/google";
+import AboutModal from "@/components/Modals/AboutModal";
+import SocialModal from "@/components/Modals/SocialModal";
+
+const interFont = Poppins({
+  subsets: ["latin"],
+  weight: ["500"],
 });
 
 export const metadata = {
@@ -24,10 +28,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={poppins.className}>
+      <body className={interFont.className}>
         <Providers>
           <Navbar />
           <LoginModal />
+          <AboutModal />
+          <SocialModal />
           <div className="flex relative mt-20">
             {children}
 

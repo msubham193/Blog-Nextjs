@@ -15,7 +15,6 @@ const fetchSingelPost = async (id: string) => {
 };
 
 const SinglePost = async ({ params }: { params: { slug: string } }) => {
-
   const data = await fetchSingelPost(params.slug);
 
   return (

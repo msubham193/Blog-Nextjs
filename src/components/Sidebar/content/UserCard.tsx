@@ -11,7 +11,7 @@ import loading from "../../../Animation/json/loading.json";
 import UserSingleSkeleton from "@/components/Skeleton/UserSingleSkeleton";
 
 const UserCard = () => {
-  let { data, isLoading } = useQuery({
+  let { data, isLoading, isSuccess } = useQuery({
     queryFn: async () => {
       const { data } = await axios.get(`/api/user/fetch`);
 
@@ -35,7 +35,9 @@ const UserCard = () => {
     });
   }
 
-  data = data?.filter((user: any) => user?._id !== session?.data?.user?.id);
+  data = Array.isArray(data)
+    ? data?.filter((user: any) => user?._id !== session?.data?.user?.id)
+    : [];
 
   return (
     <div className="shadow-md mt-10 max-w-sm bg-slate-100 rounded-lg p-5">

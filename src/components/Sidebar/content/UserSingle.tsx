@@ -16,8 +16,6 @@ interface props {
 const UserSingle = ({ props, user }: { props: props; user: any }) => {
   const router = useRouter();
 
-  console.log(user.following);
-
   const [followerCnt, setFollowerCnt] = useState<any | null>(
     props?.followers.length
   );

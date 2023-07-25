@@ -6,7 +6,7 @@ import { useSearchTextStore } from "../../../store/useSearchTextStore";
 const Feed = ({ data }: { data: [] }) => {
   const [filteredpost, setFilteredPost] = useState([]);
   const { text }: any = useSearchTextStore();
- 
+
   useEffect(() => {
     const filter = data?.filter((post: any) => {
       return post.title.toLowerCase().includes(text.toLowerCase());
@@ -15,7 +15,6 @@ const Feed = ({ data }: { data: [] }) => {
     if (filter?.length > 0) {
       setFilteredPost(filter);
     } else {
-     
     }
   }, [text]);
 

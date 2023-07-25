@@ -1,29 +1,23 @@
-import { NextRequest, NextResponse } from "next/server";
-import User from "../../../../../models/userModels";
 import { dbConnection } from "@/utills/dbConnect";
+import { NextRequest, NextResponse } from "next/server";
+import Post from "../../../../../models/postModel";
 
 export const GET = async (request: NextRequest) => {
   const id: string = request.nextUrl.searchParams.get("id") || "";
 
   try {
     await dbConnection();
-    if (id) {
-      const user = await User.findById(id);
-      return NextResponse.json(
-        {
-          user,
-        },
-        { status: 200 }
-      );
-    }
-    const users = await User.find();
+
+    const posts = await Post.find({ "author.id": id }).populate("author.id");
+
     return NextResponse.json(
       {
-        users: users,
+        posts,
       },
       { status: 200 }
     );
   } catch (error: any) {
+    console.log(error.message);
     return NextResponse.json(
       {
         message: error.message,

@@ -15,6 +15,30 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
+  about: {
+    type: String,
+    default: "",
+  },
+
+  socials: {
+    github: {
+      type: String,
+      default: "",
+    },
+
+    instagram: {
+      type: String,
+      default: "",
+    },
+    twiiter: {
+      type: String,
+      default: "",
+    },
+    facebook: {
+      type: String,
+      default: "",
+    },
+  },
   followers: [
     {
       type: mongoose.Types.ObjectId,

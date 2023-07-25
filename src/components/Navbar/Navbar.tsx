@@ -12,6 +12,7 @@ import Logout from "../Articles/Icons/Logout";
 import Profile from "../Articles/Icons/Profile";
 import About from "../Articles/Icons/About";
 import Developer from "../Articles/Icons/Developer";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const { data } = useSession();
@@ -69,16 +70,20 @@ const Navbar = () => {
 };
 
 const DropDown = () => {
-  const data = [
+  const { data }: any = useSession();
+  const router = useRouter();
+  const items = [
     {
       id: 1,
       text: "Profile",
       icon: <Profile />,
+      path: `/profile/${data?.user?.id}`,
     },
     {
       id: 2,
       text: "About",
       icon: <About />,
+      path: "/about",
     },
     {
       id: 3,
@@ -89,18 +94,26 @@ const DropDown = () => {
       id: 4,
       text: "Developer Info",
       icon: <Developer />,
+      path: "/developer",
     },
   ];
 
   return (
     <div className="bg-white w-56 h-64 p-5 absolute right-0 top-14 shadow-xl border  rounded-md">
-      {data.map((d: any) => (
+      {items.map((d: any) => (
         <div
           className="flex items-center gap-5 font-medium text-base mb-5 hover:bg-slate-300 rounded-md p-2"
           key={d.id}
         >
           {d.icon}
-          <button onClick={() => signOut()}> {d.text}</button>
+          <button
+            onClick={() =>
+              d.text === "Log out" ? signOut() : router.push(d.path)
+            }
+          >
+            {" "}
+            {d.text}
+          </button>
         </div>
       ))}
     </div>

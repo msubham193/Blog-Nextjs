@@ -6,11 +6,11 @@ export const GET = async (request: NextRequest) => {
   // const category = await request.json();
   const category: string = request.nextUrl.searchParams.get("category") || "";
   const id: string = request.nextUrl.searchParams.get("id") || "";
-  await dbConnection();
 
   let posts: any = [];
 
   try {
+    await dbConnection();
     if (category?.length > 0) {
       posts = await Post.find({ category: category }).sort({ createdAt: -1 });
     } else if (id.length > 0) {

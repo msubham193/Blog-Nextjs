@@ -4,6 +4,7 @@ import { dbConnection } from "@/utills/dbConnect";
 import { NextAuthOptions, getServerSession } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import User from "../../../../../models/userModels";
+import { LoginModalStore } from "../../../../../store/LoginModalStore";
 
 export const authOptions: NextAuthOptions = {
   session: {
@@ -19,7 +20,6 @@ export const authOptions: NextAuthOptions = {
 
   callbacks: {
     session: async ({ session, token }: any) => {
-  
       session.user = {
         id: "",
         name: "",
@@ -37,7 +37,7 @@ export const authOptions: NextAuthOptions = {
       session.user = session.user ?? {};
 
       const sessionUser = await User.findOne({ email: token.email });
-   
+
       if (token) {
         session.user.id = sessionUser.id;
         session.user.name = token.name;
@@ -46,13 +46,11 @@ export const authOptions: NextAuthOptions = {
         session.user.username = token.username;
       }
 
-     
-
       return session;
     },
 
     signIn: async ({ profile, session }: any) => {
-    
+      // const loginModal: any = LoginModalStore();
       try {
         await dbConnection();
         if (await User.findOne({ email: profile.email })) {
@@ -63,6 +61,8 @@ export const authOptions: NextAuthOptions = {
           name: profile.name,
           image: profile.picture,
         });
+
+        // loginModal.setOpen();
 
         return true;
       } catch (error) {
