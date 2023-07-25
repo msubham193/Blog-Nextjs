@@ -13,7 +13,7 @@ import SocialModal from "@/components/Modals/SocialModal";
 
 const interFont = Poppins({
   subsets: ["latin"],
-  weight: ["500"],
+  weight: ["400"],
 });
 
 export const metadata = {
