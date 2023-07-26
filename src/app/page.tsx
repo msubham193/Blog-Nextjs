@@ -22,7 +22,7 @@ export default async function Home() {
   console.log(data);
 
   return (
-    <main className=" p-5  w-[65%]">
+    <main className=" p-5  xl:w-[65%]">
       <link rel="icon" href="favicon.ico" sizes="any" />
       <CategoryBar />
 

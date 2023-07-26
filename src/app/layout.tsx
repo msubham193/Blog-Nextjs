@@ -37,7 +37,10 @@ export default function RootLayout({
           <div className="flex relative mt-20">
             {children}
 
-            <Sidebar />
+            <div className="hidden  xl:block">
+              {" "}
+              <Sidebar />
+            </div>
           </div>
         </Providers>
       </body>

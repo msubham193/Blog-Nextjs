@@ -13,6 +13,7 @@ import Profile from "../Articles/Icons/Profile";
 import About from "../Articles/Icons/About";
 import Developer from "../Articles/Icons/Developer";
 import { useRouter } from "next/navigation";
+import Edit from "../Articles/Icons/Edit";
 
 const Navbar = () => {
   const { data } = useSession();
@@ -27,7 +28,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex items-center justify-between min-w-full h-16 shadow-lg p-10  fixed top-0 bg-white z-50">
+    <div className="flex items-center justify-between min-w-full h-16 shadow-lg p-5 md:p-10  fixed top-0 bg-white z-50">
       <SearchBar />
       <Link className="flex items-center gap-2" href="/">
         {" "}
@@ -44,13 +45,17 @@ const Navbar = () => {
             >
               Login
             </button>
-            <button className="border border-black rounded-full p-2 px-3 text-black w-28">
-              Signup
-            </button>
           </>
         ) : (
-          <div className="flex items-center justify-between gap-5 h-full relative">
-            <WriteButton />
+          <div className="flex items-center justify-between gap-3 md:gap-5 h-full relative">
+            <div className="hidden md:flex">
+              {" "}
+              <WriteButton />
+            </div>
+            <div className="md:hidden">
+              <Edit />
+            </div>
+
             <div className="flex justify-center gap-2  " onClick={openDropDown}>
               <Image
                 src={data.user.image as string}
