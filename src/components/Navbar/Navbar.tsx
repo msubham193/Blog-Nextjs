@@ -14,10 +14,13 @@ import About from "../Articles/Icons/About";
 import Developer from "../Articles/Icons/Developer";
 import { useRouter } from "next/navigation";
 import Edit from "../Articles/Icons/Edit";
+import Search from "@/Icons/Search";
 
 const Navbar = () => {
   const { data } = useSession();
   const [open, setOpen] = useState(false);
+
+  const [searchShow, setSearchShow] = useState(false);
 
   const openDropDown = () => {
     setOpen(!open);
@@ -28,12 +31,19 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex items-center justify-between min-w-full h-16 shadow-lg p-5 md:p-10  fixed top-0 bg-white z-50">
-      <SearchBar />
-      <Link className="flex items-center gap-2" href="/">
+    <div className="flex items-center translate duration-300 ease-in-out justify-between min-w-full h-16 shadow-lg p-5 md:p-10  fixed top-0 bg-white z-50">
+      <div className={`${searchShow ? "flex" : "hidden"}`}>
+        {" "}
+        <SearchBar />
+      </div>
+
+      <Link
+        className={`${searchShow ? "hidden" : "flex"} flex items-center gap-2 `}
+        href="/"
+      >
         {" "}
         <Logo />
-        <span className="font-bold  text-xl">Story</span>
+        <span className="font-bold text-lg  md:text-xl">Story</span>
       </Link>
 
       <div className="flex gap-3">
@@ -48,13 +58,20 @@ const Navbar = () => {
           </>
         ) : (
           <div className="flex items-center justify-between gap-3 md:gap-5 h-full relative">
+            <div
+              onClick={() => setSearchShow(!searchShow)}
+              className="cursor-pointer "
+            >
+              <Search />
+            </div>
             <div className="hidden md:flex">
               {" "}
               <WriteButton />
             </div>
-            <div className="md:hidden">
+
+            <Link className="md:hidden" href="/uploadbutton/create">
               <Edit />
-            </div>
+            </Link>
 
             <div className="flex justify-center gap-2  " onClick={openDropDown}>
               <Image

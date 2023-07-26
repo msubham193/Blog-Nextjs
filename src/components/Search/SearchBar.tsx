@@ -11,7 +11,7 @@ const SearchBar = () => {
 
  
   return (
-    <div className=" hidden md:flex border border-black rounded-2xl p-1 items-center w-44">
+    <div className="  flex border border-black rounded-2xl p-1 items-center w-44">
       <input
         type="text"
         className=" rounded-2xl p-1 w-full text-sm  outline-none"
