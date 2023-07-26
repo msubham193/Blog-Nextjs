@@ -19,8 +19,6 @@ const fetchPosts = async () => {
 export default async function Home() {
   const data = await fetchPosts();
 
-  console.log(data);
-
   return (
     <main className=" p-5  xl:w-[65%]">
       <link rel="icon" href="favicon.ico" sizes="any" />

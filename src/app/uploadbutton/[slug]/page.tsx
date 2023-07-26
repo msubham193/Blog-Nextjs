@@ -40,8 +40,8 @@ export default function Home() {
       .post("/api/post/create", { ...data, category: selected.name })
       .then(() => {
         setLoading(false);
-        router.push("/");
         router.refresh();
+        router.push("/");
       })
       .catch((error) => {
         setLoading(false);
