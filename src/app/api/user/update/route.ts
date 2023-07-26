@@ -8,7 +8,7 @@ import User from "../../../../../models/userModels";
 export const PUT = async (request: NextRequest) => {
   const data = await request.json();
   const id: string = request.nextUrl.searchParams.get("id") || "";
-
+  console.log(data.link.github);
   try {
     await dbConnection();
     const session: any = await getServerSession(authOptions);
@@ -22,6 +22,13 @@ export const PUT = async (request: NextRequest) => {
       },
       {
         about: data.aboutText,
+        // socials: {
+
+        //   github: data?.link?.github,
+        //   instagram: data?.link?.instagram,
+        //   twitter: data?.link?.twitter,
+        //   facebook: data?.link?.facebook,
+        // },
       }
     );
 

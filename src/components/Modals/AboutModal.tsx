@@ -6,21 +6,31 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { ProfileStore } from "../../../store/ProfileStore";
 
 const AboutModal = () => {
   const aboutModal: any = AboutModalStore();
   const session: any = useSession();
 
+  const [loading, setLoading] = useState(false);
+
+  const profile: any = ProfileStore();
+
   const [aboutText, setAboutText] = useState("");
   const router = useRouter();
   let mutation: any;
   const OnAboutEdit = async () => {
+    setLoading(true);
     try {
       await axios.put(`/api/user/update?id=${session?.data?.user?.id}`, {
         aboutText,
       });
+      profile.setSuccess();
+      aboutModal.setClose();
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
   const content = (
@@ -40,7 +50,7 @@ const AboutModal = () => {
         className="border  bg-slate-300 p-2 rounded-xl font-semibold w-24  text-xs"
         onClick={OnAboutEdit}
       >
-        {mutation?.isLoading ? "Updating.." : " Add"}
+        {loading ? "Updating.." : " Add"}
       </button>
     </div>
   );
