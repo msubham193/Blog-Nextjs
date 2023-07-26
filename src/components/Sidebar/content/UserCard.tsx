@@ -35,6 +35,8 @@ const UserCard = () => {
     });
   }
 
+ 
+
   data = Array.isArray(data)
     ? data?.filter((user: any) => user?._id !== session?.data?.user?.id)
     : [];

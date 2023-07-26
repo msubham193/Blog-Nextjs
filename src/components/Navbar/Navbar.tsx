@@ -102,18 +102,14 @@ const DropDown = () => {
     <div className="bg-white w-56 h-64 p-5 absolute right-0 top-14 shadow-xl border  rounded-md">
       {items.map((d: any) => (
         <div
-          className="flex items-center gap-5 font-medium text-base mb-5 hover:bg-slate-300 rounded-md p-2"
+          className="cursor-pointer flex items-center gap-5 font-medium text-base mb-5 hover:bg-slate-300 rounded-md p-2"
           key={d.id}
+          onClick={() =>
+            d.text === "Log out" ? signOut() : router.push(d.path)
+          }
         >
           {d.icon}
-          <button
-            onClick={() =>
-              d.text === "Log out" ? signOut() : router.push(d.path)
-            }
-          >
-            {" "}
-            {d.text}
-          </button>
+          <button> {d.text}</button>
         </div>
       ))}
     </div>

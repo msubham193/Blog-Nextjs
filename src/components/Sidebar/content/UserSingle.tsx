@@ -2,7 +2,7 @@
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { LoginModalStore } from "../../../../store/LoginModalStore";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -15,15 +15,18 @@ interface props {
 }
 const UserSingle = ({ props, user }: { props: props; user: any }) => {
   const router = useRouter();
-
+  console.log(user?.following.includes(props?._id));
+  const { data }: any = useSession();
   const [followerCnt, setFollowerCnt] = useState<any | null>(
     props?.followers.length
   );
   const [btnText, setBtnText] = useState(
     user?.following.includes(props?._id) ? "Following" : "Follow"
   );
-
-  const { data } = useSession();
+  useEffect(() => {
+    setBtnText(user?.following.includes(props?._id) ? "Following" : "Follow");
+    setFollowerCnt(props?.followers?.length);
+  }, [props?._id, props?.followers?.length, user?.following]);
 
   const loginModal: any = LoginModalStore();
   const onFollowBtnClick = async () => {
@@ -36,10 +39,16 @@ const UserSingle = ({ props, user }: { props: props; user: any }) => {
 
     setFollowerCnt(btnText == "Following" ? followerCnt - 1 : followerCnt + 1);
 
-    await axios
-      .put(`/api/user/follow?id=${props._id}`)
-      .then(() => router.refresh())
-      .catch((error: any) => console.log(error.message));
+    try {
+      await axios
+        .put(`/api/user/follow?id=${props._id}`)
+        .then(() => {
+          router.refresh();
+        })
+        .catch((error: any) => console.log(error.message));
+    } catch (error: any) {
+      console.log(error.message);
+    }
   };
 
   return (

@@ -15,9 +15,11 @@ import { usePathname } from "next/navigation";
 import React from "react";
 import { AboutModalStore } from "../../../../store/AboutModalStore";
 import { SocialModalStore } from "../../../../store/SocialModalStore";
+import { useSession } from "next-auth/react";
 
 const UserProfile = () => {
   const pathname = usePathname();
+  const session: any = useSession();
 
   const { data, isLoading } = useQuery({
     queryFn: async () => {
@@ -54,13 +56,17 @@ const UserProfile = () => {
       <h1 className="text-center mt-8">{data?.name}</h1>
       <div className="p-2 text-center text-xs text-slate-500">
         {!data?.about?.length ? (
-          <div
-            className="flex gap-1 items-center justify-center text-sm font-bold text-gray-500"
-            onClick={onAboutEdit}
-          >
-            <Edit />
-            Add About
-          </div>
+          session?.data?.user.id === pathname.split("/")[2] ? (
+            <div
+              className="flex gap-1 cursor-pointer items-center justify-center text-sm font-bold text-gray-500"
+              onClick={onAboutEdit}
+            >
+              <Edit />
+              Add About
+            </div>
+          ) : (
+            "No Description"
+          )
         ) : (
           data?.about
         )}
@@ -76,7 +82,7 @@ const UserProfile = () => {
         data?.socials?.twitter &&
         data?.socials?.facebook ? (
           "flgmlf"
-        ) : (
+        ) : session?.data?.user.id === pathname.split("/")[2] ? (
           <div
             className="flex gap-1 text-sm font-extrabold text-gray-500"
             onClick={onSocialIconEdit}
@@ -84,6 +90,8 @@ const UserProfile = () => {
             <Edit />
             Add Social Icons
           </div>
+        ) : (
+          <h1 className="text-xs text-gray-500">No Social Icons</h1>
         )}
         {data?.socials?.github ? <Github /> : ""}
         {data?.socials?.instagram ? <Instagram /> : ""}
