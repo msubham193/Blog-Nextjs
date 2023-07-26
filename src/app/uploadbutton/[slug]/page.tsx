@@ -51,7 +51,7 @@ export default function Home() {
 
   const handleUpdate = async () => {};
   return (
-    <main className="flex min-h-screen w-[70%]   flex-col   p-24">
+    <main className="flex min-h-screen w-full xl:w-[70%]    flex-col p-5  sm:p-10   lg:p-24">
       <h1 className="text-black font-bold text-left w-full mb-5">
         {pathname.split("/")[2] === "create"
           ? "Create a Post"
@@ -71,7 +71,7 @@ export default function Home() {
             type="text"
             name={data.title}
             value={data.title}
-            className="p-2 w-full border focus:outline-none  rounded-lg border-slate-500"
+            className="p-2 w-full border text-xs md:text-lg focus:outline-none  rounded-lg border-slate-500"
             placeholder="Enter title.. "
             onChange={(e) => setData({ ...data, title: e.target.value })}
           />
@@ -81,7 +81,7 @@ export default function Home() {
             rows={10}
             name={data.content}
             value={data.content}
-            className="mt-5  w-full rounded-lg border border-slate-500 p-2  focus:outline-none mb-3"
+            className="mt-5  w-full rounded-lg text-xs md:text-lg border border-slate-500 p-2  focus:outline-none mb-3"
             placeholder="Enter Story....."
             onChange={(e) => setData({ ...data, content: e.target.value })}
           ></textarea>
@@ -90,7 +90,6 @@ export default function Home() {
               endpoint="imageUploader"
               onClientUploadComplete={(res) => {
                 // Do something with the response
-
 
                 setData({ ...data, image: res?.[0]?.fileUrl ?? "" });
                 // alert("Upload Completed");
@@ -106,23 +105,23 @@ export default function Home() {
             <input
               type="text"
               placeholder="Add image link here..."
-              className="mt-5 mb-6 w-full rounded-md p-2 bg-slate-200 "
+              className="mt-5 mb-6 w-full text-xs md:text-lg rounded-md p-2 bg-slate-200 "
               name={data.image}
               value={data.image}
               onChange={(e) => setData({ ...data, image: e.target.value })}
             />
           </div>
-          <div className="flex w-full justify-center">
+          <div className="flex w-full  justify-center">
             <button
               disabled={btn}
               type="button"
               onClick={handleSubmit}
               className={`${
                 data.image.length == 0 ? "cursor-progress" : ""
-              }text-black bg-slate-300 hover:bg-slate-400 focus:outline-none  font-medium rounded-full text-sm  px-5 py-2.5  w-[30%] `}
+              }text-black bg-slate-300 hover:bg-slate-400 focus:outline-none  font-medium rounded-full text-xs md:text-sm  px-5 py-2.5 w-[50%]  md:w-[30%] `}
             >
               {loading ? (
-                <div className="flex items-center justify-center">
+                <div className="flex items-center justify-center ">
                   <svg
                     aria-hidden="true"
                     role="status"
