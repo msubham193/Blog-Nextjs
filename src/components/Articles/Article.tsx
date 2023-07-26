@@ -61,7 +61,12 @@ const Article = ({ props }: { props: any }) => {
         />
 
         <div className="">
-          <h1 className="text-sm font-bold ">{props?.author?.name}</h1>
+          <Link
+            href={`/profile/${props.author.id}`}
+            className="text-sm font-bold hover:underline cursor-pointer"
+          >
+            {props?.author.name}
+          </Link>
           <p className="text-xs tracking-wider">{props?.author?.slug}</p>
         </div>
       </div>

@@ -10,7 +10,7 @@ import Animation from "@/Animation/Animation";
 const fetchPostsCategory = async (category: string) => {
   try {
     const { data } = await axios.get(
-      `${process.env.NEXT_URL}/api/post/fetch?category=${category}`
+      `$https://blog-nextjs-msubham193.vercel.app/api/post/fetch?category=${category}`
     );
     return data.posts;
   } catch (error) {
@@ -24,7 +24,7 @@ const Category = async ({ params }: { params: { slug: string } }) => {
   const data = await fetchPostsCategory(convertedStr);
 
   return (
-    <main className=" p-5  w-[65%] ">
+    <main className=" p-5  xl:w-[65%]">
       <CategoryBar />
 
       {data.length > 0 ? (
