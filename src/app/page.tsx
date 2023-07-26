@@ -9,7 +9,7 @@ import Feed from "@/components/feed/Feed";
 const fetchPosts = async () => {
   try {
     const { data } = await axios.get(
-      `https://blog-nextjs-msubham193.vercel.app//api/post/fetch`
+      `https://blog-nextjs-msubham193.vercel.app/api/post/fetch`
     );
 
     return data.posts;
