@@ -1,34 +1,77 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Story - A Full-Stack Next.js 13.4 Web Application
 
-First, run the development server:
+"Story" is a feature-rich full-stack web application built using Next.js 13.4 as the front-end framework, MongoDB for data storage, NextAuth.js for authentication, and UploadThing for handling image storage. The primary goal of Story is to provide users with a platform to share their stories, thoughts, and experiences with others. The application allows users to create posts, like and follow other users, view user profiles, and comment on posts made by other users.
+
+
+#
+
+
+## Key Features:
+
+- User Registration and Authentication:
+- Post Creation:
+- Image Uploads: 
+- Post Interactions: 
+- User Following:
+- User Profiles:
+- Commenting System: 
+
+
+## Tech Stack
+
+- Front-end: Next.js 13.4, React, HTML5, CSS3, JavaScript
+
+- Back-end: NextAPI
+- Database: MongoDB
+- Authentication: NextAuth.js
+- Image Storage: UploadThing
+
+
+## Screenshots
+
+![App Screenshot](https://firebasestorage.googleapis.com/v0/b/community-486c7.appspot.com/o/Screenshot%202023-07-27%20at%202.18.52%20PM-min.png?alt=media&token=08f2b34c-518e-4aac-b024-79ae748d46c6)
+
+
+![App Screenshot](https://firebasestorage.googleapis.com/v0/b/community-486c7.appspot.com/o/Screenshot%202023-07-27%20at%202.19.00%20PM-min.png?alt=media&token=e050e154-5a20-41ba-b7a6-64f5866a97b5)
+
+
+
+![App Screenshot](https://firebasestorage.googleapis.com/v0/b/community-486c7.appspot.com/o/Screenshot%202023-07-27%20at%202.19.15%20PM-min.png?alt=media&token=8f6310fd-5883-4e33-9b22-699ccb606712)
+
+
+![App Screenshot](https://firebasestorage.googleapis.com/v0/b/community-486c7.appspot.com/o/Screenshot%202023-07-27%20at%202.19.30%20PM-min.png?alt=media&token=352a852f-ec75-4360-86f3-71e72cdc3692)
+
+
+
+
+
+
+
+
+## Run Locally
+
+Clone the project
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+  https://github.com/msubham193/Blog-Nextjs.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Go to the project directory
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+  cd Blog-Nextjs
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Install dependencies
 
-## Learn More
+```bash
+  npm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+Start the server
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+  npm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
