@@ -28,6 +28,9 @@ const UserSingle = ({ props, user }: { props: props; user: any }) => {
     setFollowerCnt(props?.followers?.length);
   }, [props?._id, props?.followers?.length, user?.following]);
 
+  console.log(typeof props?._id.toString());
+  const id = props?._id.toString();
+
   const loginModal: any = LoginModalStore();
   const onFollowBtnClick = async () => {
     if (!data) {
@@ -64,7 +67,9 @@ const UserSingle = ({ props, user }: { props: props; user: any }) => {
 
         <div className="">
           <Link
-            href={`/profile/${props._id}`}
+            href={{
+              pathname: "/profile/" + id,
+            }}
             className="text-sm font-bold hover:underline cursor-pointer"
           >
             {props?.name}

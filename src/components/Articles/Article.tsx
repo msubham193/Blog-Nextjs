@@ -43,7 +43,7 @@ const Article = ({ props }: { props: any }) => {
 
     try {
       await axios.put(`api/post/like?id=${props._id}`);
-      window.location.reload();
+      alert("liked");
     } catch (error: any) {
       console.log(error.message);
     }

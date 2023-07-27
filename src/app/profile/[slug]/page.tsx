@@ -1,6 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
+import Article from "@/components/Articles/Article";
+import ProfileArticle from "@/components/Articles/ProfileArticle";
 import Feed from "@/components/feed/Feed";
 import axios from "axios";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const fetchPosts = async (id: string) => {
@@ -26,24 +30,27 @@ const fetchAuthor = async (id: string) => {
 };
 
 const page = async ({ params }: { params: { slug: string } }) => {
-  const data = await fetchPosts(params.slug);
-
-  const user = await fetchAuthor(params.slug);
+  const data = await fetchPosts(params?.slug);
+  console.log(data);
+  // const user = await fetchAuthor(params.slug);
 
   return (
     <main className=" p-5  w-[65%]">
       <link rel="icon" href="favicon.ico" sizes="any" />
-      {data?.length == 0 ? (
+      {data?.length === 0 ? (
         <div className="h-screen w-full flex items-center justify-center">
-          {user?.name} don't have any posts
+          don't have any posts
         </div>
       ) : (
         <>
           {" "}
           <h1 className="font-extrabold text-2xl mt-5 mb-5">
-            Explore The Time Line of {user?.name} :
+            {/* Explore The Time Line of {user?.name} : */}
           </h1>
-          <Feed data={data} />
+          {/* <Feed data={data} /> */}
+          {data?.map((d: any) => (
+            <ProfileArticle key={d._id} d={d} />
+          ))}
         </>
       )}
     </main>
