@@ -14,9 +14,12 @@ import Edit from "./Icons/Edit";
 import Delete from "./Icons/Delete";
 import Link from "next/link";
 import Liked from "./Icons/Liked";
+import { RequestSuccessStore } from "../../../store/RequestSuccessStore";
 
 const Article = ({ props }: { props: any }) => {
   const { data }: any = useSession();
+
+  const requestSuccessStore: any = RequestSuccessStore();
 
   const loginModal: any = LoginModalStore();
   const router = useRouter();
@@ -43,9 +46,14 @@ const Article = ({ props }: { props: any }) => {
       .catch((error) => console.log(error));
   };
   const onDelete = async () => {
+    alert("Are you sure you want to delete");
     await axios
       .delete(`api/post/delete?id=${props._id}`)
-      .then(() => router.refresh())
+      .then(() => {
+        window.location.reload();
+        // alert("Deleted");
+        // router.refresh();
+      })
       .catch((error) => console.log(error));
   };
 
