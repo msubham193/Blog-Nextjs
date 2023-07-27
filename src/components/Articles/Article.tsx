@@ -40,10 +40,13 @@ const Article = ({ props }: { props: any }) => {
 
     setIsLiked(!isLiked);
     setLike(!isLiked ? like + 1 : like - 1);
-    await axios
-      .put(`api/post/like?id=${props._id}`)
-      .then(() => router.refresh())
-      .catch((error) => console.log(error));
+
+    try {
+      await axios.put(`api/post/like?id=${props._id}`);
+      alert("liked");
+    } catch (error: any) {
+      console.log(error.message);
+    }
   };
   const onDelete = async () => {
     alert("Are you sure you want to delete");

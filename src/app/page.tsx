@@ -8,9 +8,9 @@ import Feed from "@/components/feed/Feed";
 
 const fetchPosts = async () => {
   try {
-    const { data } = await axios.get(
-      `https://blog-nextjs-kk8p.vercel.app/api/post/fetch`
-    );
+    const { data } = await axios.get(`${process.env.NEXT_URL}/api/post/fetch`);
+
+    console.log(data.posts.length);
 
     return data.posts;
   } catch (error) {

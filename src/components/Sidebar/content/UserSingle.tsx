@@ -15,7 +15,7 @@ interface props {
 }
 const UserSingle = ({ props, user }: { props: props; user: any }) => {
   const router = useRouter();
-  console.log(user?.following.includes(props?._id));
+
   const { data }: any = useSession();
   const [followerCnt, setFollowerCnt] = useState<any | null>(
     props?.followers.length
